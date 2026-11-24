@@ -4,21 +4,31 @@ Resource          ${EXECDIR}/resources/base.resource
 
 *** Variables ***
 ${BACKPACK_ADD_BUTTON}    data-test=add-to-cart-sauce-labs-backpack
-${JACKET_ADD_BUTTON}      data-test=add-to-cart-sauce-labs-fleece-jacket
 ${CART_BUTTON}            data-test=shopping-cart-link
 ${CART_ITEM}              css=[aria-label="Cart, 1 items"]
+${LOGOUT_BUTTON}          id=logout_sidebar_link
 
 *** Keywords ***
-User is on the inventory page
+Validate Inventory Page
     Wait For Elements State    ${BACKPACK_ADD_BUTTON}    visible
 
-User adds the backpack to the cart
+Add item backpack to the cart
     Click            ${BACKPACK_ADD_BUTTON}
     Get Atribute     ${CART_BUTTON}    aria-label
     Should Be Equal As Strings   ${CART_BUTTON}    ${CART_ITEM}
-    Wait Until Keyword Succeeds   5s    200 ms Cart button should have label    Cart, 1 items
+    Wait Until Keyword Succeeds    5s    200 ms    Cart button should have label    Cart, 1 items
 
-User navigates to the cart page
+Open Cart Page
     Click    ${CART_BUTTON}
-    Wait Untill Keyword Succeeds   5s    200 ms Get Url  contains   cart.html
     Get Url  contains   cart.html
+
+Open Menu
+    Click    ${MENU_BUTTON}
+
+Click Logout
+    Click    ${LOGOUT_BUTTON}
+    Get Url  contains  ${BASE_URL} 
+
+Validate Cart Contains Item
+    [Arguments]    ${item_name}
+    Get Text    css=.cart_item .inventory_item_name    ==    ${item_name}

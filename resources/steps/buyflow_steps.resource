@@ -27,8 +27,7 @@ User adds the backpack to the cart
     Click                     ${BACKPACK_ADD_BUTTON}    
 
 User navigates to the cart page
-    Click                     ${CART_BUTTON}
-    Get Url  contains   cart.html
+    Open Cart Page
 
 User proceeds to checkout
     Click                     ${CHECKOUT_BUTTON}
