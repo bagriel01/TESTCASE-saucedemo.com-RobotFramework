@@ -20,5 +20,5 @@ User should be redirected to the inventory page
     Get Url  ==  ${URL_INVENTORY}
 
 User should see the error message "${text}"
-    Wait For Elements State    ${ERROR_MESSAGE}    visible
+    Wait For Elements State      ${ERROR_MESSAGE}  visible
     Get Text   ${ERROR_MESSAGE}  contains          ${text}

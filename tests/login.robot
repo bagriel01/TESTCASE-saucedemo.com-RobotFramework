@@ -19,4 +19,3 @@ Scenario: User logs in with invalid id and password
     When User enters invalid username and password
     And User clicks on the login button
     Then User should see the error message "Epic sadface: Username and password do not match any user in this service"
-
