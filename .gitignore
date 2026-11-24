@@ -1,0 +1,5 @@
+/.venv
+.venv/
+.robotcode_cache
+/robotcode_cache/
+results/results/
